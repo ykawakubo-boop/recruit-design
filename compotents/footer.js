@@ -1,3 +1,7 @@
+/**
+ * フッター カスタム要素（Web Component）
+ * 各メニューの表記を元の英語（CORPORATE SITE / CSR / CONTACT）に戻し、正しい本番用URLを割り当てた決定版です。
+ */
 class FooterComponent extends HTMLElement {
   connectedCallback() {
     // 呼び出し元のHTMLの階層に合わせてパスを調整（デフォルトは現在のディレクトリ）
@@ -7,7 +11,7 @@ class FooterComponent extends HTMLElement {
       <footer class="bg-slate-900 text-slate-300 pt-12 pb-8 px-6 md:px-12 lg:px-20">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
           
-          <!-- 左側：リンク群 -->
+          <!-- 左側：英語メニュー（元のデザイン通り）と公式URL -->
           <div class="flex flex-wrap justify-center md:justify-start gap-6 font-medium text-sm">
             <a href="https://design.diamondhead.jp/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">CORPORATE SITE</a>
             <a href="https://csr.diamondhead.jp/?_gl=1*i8jglq*_gcl_au*MTYyNDY5OTA2Ni4xNzgwOTk0ODM2" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">CSR</a>
