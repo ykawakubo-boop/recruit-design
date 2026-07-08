@@ -8,6 +8,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts: 幾何学的でモダンな日本語フォント「Noto Sans JP」のBold(700)と極太(900)を読み込み -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+
   <style>
     /* サイドバーのスクロールバーカスタマイズ用 */
     sidebar-component aside::-webkit-scrollbar {
@@ -25,19 +31,28 @@
       transform: translate3d(0, 0, 0);
       will-change: transform;
     }
+
+    /* キャッチコピー専用の洗練されたモダンタイポグラフィ
+      font-feature-settings: "palt" を適用することで、日本語フォントが縦長に見える余分な仮想余白を自動で詰め、
+      横方向へのレタースペーシング(tracking)が1文字ずつ美しく均等に、そこで伸びやかに広がるように制御します。
+    */
+    .hero-title {
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      font-feature-settings: "palt";
+    }
   </style>
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 overflow-x-hidden selection:bg-blue-600 selection:text-white">
 
   <div class="flex min-h-screen w-full">
 
-    <!-- サイドバーコンポーネントの呼び出し -->
+    <!-- サイドバーコンポーネ出し -->
     <sidebar-component base-path="."></sidebar-component>
 
     <!-- メインコンテンツ (レフトナビの右側に配置) -->
     <main class="flex-1 lg:ml-72 flex flex-col w-full pt-16 lg:pt-0 relative">
       
-      <!-- Hero Section -->
+      <!-- Hero Section（元のシンプルな配置に戻し、タイポグラフィを洗練化） -->
       <section class="relative py-20 lg:py-28 min-h-[85vh] flex items-center overflow-hidden" style="background-color: #C7FF00;">
         <!-- 左側背景（ブルー） - 斜めの幾学切り返し -->
         <div class="absolute inset-0 w-[100%] md:w-[65%] lg:w-[60%] h-full z-0 transition-all duration-500" 
@@ -51,7 +66,13 @@
             <div class="inline-block bg-white text-blue-600 font-bold px-4 py-1.5 rounded-full text-sm tracking-widest shadow-sm">
               デザイン職採用サイト
             </div>
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-tight tracking-tight drop-shadow-sm">
+            <!-- 【調整箇所】
+                 - hero-title：フォント詰め処理CSSを適用。
+                 - font-bold (ウェイト 700)：極太(900)から太字(700)へ調整し、スマートな高級感を持たせました。
+                 - tracking-[0.18em]：文字と文字の間を贅沢に広げ、横にすっきりと広がるモダンな佇まいに変更
+                 - leading-[1.3]：文字間を広げた分、行間も最も調和するバランスに調整
+            -->
+            <h1 class="hero-title text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-[1.3] tracking-[0.18em] drop-shadow-sm">
               モヤモヤを、<br />
               ワクワクに。
             </h1>
@@ -65,7 +86,6 @@
           <!-- 右側：メイン画像 (TOP.png) -->
           <div class="flex justify-center md:justify-start relative mt-8 md:mt-0 md:-ml-8 lg:-ml-16">
             <div class="relative w-full max-w-lg z-10">
-               <!-- チラつきや画質低下の原因となるonerrorとダミーURLを完全排除 -->
                <img src="images/TOP.png" alt="メインビジュアル" class="w-full h-auto object-contain drop-shadow-2xl">
             </div>
             <!-- 画像の背景装飾 -->
@@ -87,7 +107,6 @@
             <!-- mission.png 写真 -->
             <div class="mt-8 relative rounded-2xl overflow-hidden shadow-lg transform md:-rotate-3 group">
               <div class="absolute inset-0 bg-blue-600/10 group-hover:bg-transparent transition-colors duration-300 z-10"></div>
-              <!-- チラつき防止のためローカル直引きに変更 -->
               <img src="images/mission.png" alt="Missionのイメージ" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
             </div>
           </div>
@@ -95,11 +114,10 @@
             <div class="absolute -top-6 -right-6 w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transform rotate-6" style="background-color: #27A6FF;">
               <i data-lucide="search" class="w-6 h-6 text-white"></i>
             </div>
-            <!-- PC表示時のフォントサイズを md:text-3xl lg:text-4xl に拡大し、太さを font-extrabold に調整 -->
             <h3 class="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-6 text-slate-900">「どうしたらいい？」に答えを。</h3>
             <p class="text-base sm:text-lg leading-loose text-slate-600">
               ビジネスの現場に溢れるモヤモヤ。私たちの役割は、その悩みに寄り添いデザインで答えを出すことです。<br />
-              オンラインストアのバナー制作やサイト更新といった日々の運用から、UI/UXデザイン、データ分析に基づく改善提案まで。<br class="hidden sm:block" />ただ「作る」だけで、その先の利用者を「楽しませる」ことを大切にしています。
+              オンラインストア of バナー制作やサイト更新といった日々の運用から、UI/UXデザイン、データ分析に基づく改善提案まで。<br class="hidden sm:block" />ただ「作る」だけで、その先の利用者を「楽しませる」ことを大切にしています。
             </p>
           </div>
         </div>
@@ -155,8 +173,12 @@
               <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-2 tracking-tight">Target<br class="hidden lg:block"/> Positions</h2>
               <p class="font-bold text-lg text-slate-700">目指すポジション</p>
             </div>
+            <!-- 【調整箇所】
+                 「ECデザイナー」とその前後のカッコ「 」を <span class="whitespace-nowrap"> で囲いました。
+                 これにより、スマートフォン表示時でも絶対に途中で単語が改行されず、1つの単語としてまとまった綺麗な表示がキープされます。
+            -->
             <p class="text-slate-900 leading-loose text-base md:text-lg font-medium">
-              まずは、WEBデザイン, ECビジネス、システム、それぞれの側面から知識を身に着けた「<strong class="text-slate-900 text-xl font-extrabold border-b-2 border-slate-900 pb-0.5">ECデザイナー</strong>」を目指します。<br /><br />
+              まずは、WEBデザイン, ECビジネス、システム、それぞれの側面から知識を身に着けた<span class="whitespace-nowrap">「<strong class="text-slate-900 text-xl font-extrabold border-b-2 border-slate-900 pb-0.5">ECデザイナー</strong>」</span>を目指します。<br /><br />
               デザインだけに留まらず、あらゆる知識を蓄えることで、将来的にキャリアパスをディレクターやUI/UXなど多方面へ広げられます。
             </p>
           </div>
@@ -314,17 +336,14 @@
               
               <div class="grid grid-cols-2 gap-4">
                 <div class="space-y-4">
-                  <!-- top_1.jpg から 大文字 of top_1.JPG へ変更 -->
                   <div class="bg-slate-200 aspect-[4/3] rounded-xl flex items-center justify-center relative overflow-hidden group">
                      <img src="images/top_1.JPG" alt="お昼休憩" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                   </div>
-                  <!-- top_2.jpg を設定 -->
                   <div class="bg-slate-200 aspect-square rounded-xl flex items-center justify-center relative overflow-hidden group">
                      <img src="images/top_2.jpg" alt="社内勉強会" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                   </div>
                 </div>
                 <div class="space-y-4 pt-8">
-                  <!-- top_3.jpg を設定 -->
                   <div class="bg-slate-200 aspect-square rounded-xl flex items-center justify-center relative overflow-hidden group">
                      <img src="images/top_3.jpg" alt="ミーティング" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
                   </div>
@@ -345,7 +364,6 @@
       <section class="py-24 px-6 bg-white border-t border-slate-200 relative">
         
         <div class="max-w-6xl mx-auto relative">
-          <!-- 修正箇所：キャラクター画像（スマホでは「We are looking for...」の上部に中央寄せ、sm以上では左上に絶対配置にレスポンシブ化） -->
           <div class="relative sm:absolute top-0 sm:-top-12 left-0 sm:left-[6%] md:left-[8%] w-16 sm:w-24 md:w-32 mx-auto sm:mx-0 pointer-events-none z-10 mb-4 sm:mb-0">
             <img src="images/仲良し.png" alt="キャラクターイラスト" class="w-full h-auto object-contain drop-shadow-md">
           </div>
@@ -409,7 +427,6 @@
             <a href="interview/interview_2019.html" class="group flex flex-col sm:flex-row bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-slate-200">
               <div class="sm:w-2/5 bg-slate-200 aspect-square sm:aspect-auto relative overflow-hidden">
                 <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors z-10"></div>
-                <!-- 写真を設定 -->
                 <img src="images/interview2019_1.jpg" alt="関 夏美" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
               </div>
               <div class="sm:w-3/5 p-6 md:p-8 flex flex-col justify-center">
@@ -425,7 +442,6 @@
             <a href="interview/interview_2018.html" class="group flex flex-col sm:flex-row bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-slate-200">
               <div class="sm:w-2/5 bg-slate-200 aspect-square sm:aspect-auto relative overflow-hidden">
                 <div class="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors z-10"></div>
-                <!-- 太田 早紀さんのメイン写真 images/interview2018_1.jpg を設定 -->
                 <img src="images/interview2018_1.jpg" alt="太田 早紀" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
               </div>
               <div class="sm:w-3/5 p-6 md:p-8 flex flex-col justify-center">
@@ -491,7 +507,7 @@
         </div>
       </section>
 
-      <!-- フッターコンポーネントの呼び出し -->
+      <!-- フッターコンポーネント of 呼び出し -->
       <footer-component base-path="."></footer-component>
 
     </main>
@@ -504,7 +520,7 @@
 
   <!-- Canvasプレビュー用フォールバックコード -->
   <script>
-    setTimeout(() => {
+    window.addEventListener('DOMContentLoaded', () => {
       // サイドバーが外部JSから読み込めていなければ定義
       if (!customElements.get('sidebar-component')) {
         class SidebarComponentFallback extends HTMLElement {
@@ -538,6 +554,7 @@
                       </ul>
                     </li>
                     <li><a href="${basePath}/outsourcing.html" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">業務委託契約 <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i></a></li>
+                    <li><a href="https://recruit.jobcan.jp/diamondhead/job_offers/1462258" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">会社説明会 <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i></a></li>
                     <li><a href="https://design.diamondhead.jp/works/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">制作事例 <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i></a></li>
                   </ul>
                 </nav>
@@ -575,7 +592,7 @@
         customElements.define('sidebar-component', SidebarComponentFallback);
       }
 
-      // フッターが外部JS（components/footer.js）から何らかの理由（404エラーなど）で読み込めなかった時のための安全フォールバック
+      // フッターフォールバック
       if (!customElements.get('footer-component')) {
         class FooterComponentFallback extends HTMLElement {
           connectedCallback() {
@@ -606,7 +623,7 @@
       if (typeof lucide !== 'undefined') {
         lucide.createIcons();
       }
-    }, 100);
+    });
   </script>
 </body>
 </html>
