@@ -162,7 +162,6 @@
 
       <!-- Bottom Navigation -->
       <section class="py-16 px-6 bg-slate-50 border-t border-slate-200">
-        <!-- flexコンテナを右寄せにして、左側の「一覧へ戻る」ボタンを削除 -->
         <div class="max-w-4xl mx-auto flex justify-end">
           <!-- リンク先を interview_2019.html へ修正 -->
           <a href="interview_2019.html" class="flex flex-col items-end text-right group">
@@ -197,10 +196,10 @@
     </main>
   </div>
 
-  <!-- コンポーネントJSの読み込み -->
+  <!-- 外部共通JSの読み込み -->
   <script src="../components/sidebar.js"></script>
   <script src="../components/footer.js"></script>
-  
+
   <!-- 100%表示保証のための安全なインラインフォールバック -->
   <script>
     window.addEventListener('DOMContentLoaded', () => {
@@ -266,6 +265,13 @@
                         <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i>
                       </a>
                     </li>
+                    <!-- 最新メニュー完全同期（会社説明会を追加、1dayインターンシップを削除） -->
+                    <li>
+                      <a href="https://recruit.jobcan.jp/diamondhead/job_offers/1462258" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">
+                        会社説明会 
+                        <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i>
+                      </a>
+                    </li>
                     <li>
                       <a href="https://design.diamondhead.jp/works/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">
                         制作事例 
@@ -323,7 +329,7 @@
         customElements.define('sidebar-component', SidebarComponentFallback);
       }
 
-      // フッターのフォールバック (外部JSの読み込みが失敗した、あるいは遅れた場合のみ発動)
+      // フッターのフォールバック
       if (!customElements.get('footer-component')) {
         class FooterComponentFallback extends HTMLElement {
           connectedCallback() {
