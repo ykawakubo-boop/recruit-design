@@ -1,6 +1,5 @@
 class SidebarComponent extends HTMLElement {
   connectedCallback() {
-    // 呼び出し元のHTMLの階層に合わせてパスを調整（デフォルトは現在のディレクトリ）
     const basePath = this.getAttribute('base-path') || '.';
     
     this.innerHTML = `
@@ -40,7 +39,6 @@ class SidebarComponent extends HTMLElement {
             <li class="group">
               <a href="#" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition">
                 インタビュー 
-                <!-- アイコンを右向き(chevron-right)にし、ホバー時に90度回転(rotate-90)させて下向きにする -->
                 <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 group-hover:rotate-90 transition-transform duration-300"></i>
               </a>
               <ul class="hidden group-hover:block pl-4 mt-3 space-y-3 border-l-2 border-slate-100 ml-2">
@@ -57,40 +55,41 @@ class SidebarComponent extends HTMLElement {
               </ul>
             </li>
             
-            <!-- 順番入れ替え：業務委託契約を先に -->
             <li>
               <a href="${basePath}/outsourcing.html" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">
                 業務委託契約 
                 <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i>
               </a>
             </li>
+
+            <li>
+              <a href="https://recruit.jobcan.jp/diamondhead/job_offers/1462258" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">
+                会社説明会 
+                <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i>
+              </a>
+            </li>
             
-            <!-- 順番入れ替え：制作事例を後に -->
             <li>
               <a href="https://design.diamondhead.jp/works/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">
                 制作事例 
                 <i data-lucide="external-link" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i>
               </a>
             </li>
-            
           </ul>
         </nav>
       </aside>
     `;
 
-    // 動的に生成したHTML内のLucideアイコンをレンダリング
     if (typeof lucide !== 'undefined') {
       lucide.createIcons({ root: this });
     }
 
-    // モバイル用メニューの開閉制御
     const menuToggle = this.querySelector('#menu-toggle');
     const leftNav = this.querySelector('#left-nav');
     
     if (menuToggle && leftNav) {
       menuToggle.addEventListener('click', () => {
         leftNav.classList.toggle('-translate-x-full');
-        
         if (leftNav.classList.contains('-translate-x-full')) {
           menuToggle.textContent = 'MENU';
           menuToggle.classList.remove('text-slate-800');
@@ -102,7 +101,6 @@ class SidebarComponent extends HTMLElement {
         }
       });
 
-      // モバイル時、メニュー内のリンクをクリックしたらメニューを閉じる
       const navLinks = leftNav.querySelectorAll('a');
       navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -114,7 +112,7 @@ class SidebarComponent extends HTMLElement {
             }
             return;
           }
-          if (window.innerWidth < 1024) { // lg(1024px)未満の場合のみ
+          if (window.innerWidth < 1024) {
             leftNav.classList.add('-translate-x-full');
             menuToggle.textContent = 'MENU';
             menuToggle.classList.remove('text-slate-800');
@@ -126,5 +124,9 @@ class SidebarComponent extends HTMLElement {
   }
 }
 
-// カスタム要素として登録
-customElements.define('sidebar-component', SidebarComponent);
+// 他のファイルの古い読み込みによる二重定義エラーを防ぐ
+try {
+  customElements.define('sidebar-component', SidebarComponent);
+} catch (e) {
+  console.warn('sidebar-componentは既に定義されています。');
+}
