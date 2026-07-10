@@ -172,7 +172,8 @@
           </p>
           <a href="https://recruit.jobcan.jp/diamondhead/list?category_id=13413" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-slate-900 text-white px-10 py-5 rounded-md font-bold hover:bg-slate-800 transition shadow-md group text-lg w-full sm:w-auto">
             エントリーする
-            <i data-lucide="chevron-right" class="ml-2 w-6 h-6 group-hover:translate-x-1 transition"></i>
+            <!-- ★ アローの滑らかなアニメーション設定を追加 -->
+            <i data-lucide="chevron-right" class="ml-2 w-6 h-6 transform group-hover:translate-x-1.5 transition-transform duration-300"></i>
           </a>
         </div>
       </section>
@@ -187,5 +188,14 @@
   <script src="components/sidebar.js"></script>
   <script src="components/footer.js"></script>
   
+  <!-- ★ Lucide Iconsをページ上で実体化させるためのスクリプトを追加 -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
+
 </body>
 </html>
