@@ -199,7 +199,8 @@
             <span class="text-xs text-slate-500 font-bold mb-1">次のインタビューを読む</span>
             <span class="flex items-center text-slate-900 font-extrabold text-lg group-hover:text-blue-600 transition">
               太田 早紀 <span class="text-sm font-normal text-slate-500 ml-2">(2018年入社)</span>
-              <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition"></i>
+              <!-- ★ アローの滑らかなアニメーション設定を追加 -->
+              <i data-lucide="arrow-right" class="ml-2 w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-300"></i>
             </span>
           </a>
         </div>
@@ -216,7 +217,8 @@
           </p>
           <a href="../index.html#join" class="inline-flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-md font-bold hover:bg-blue-700 transition shadow-sm group">
             採用情報を見る
-            <i data-lucide="chevron-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition"></i>
+            <!-- ★ アローの滑らかなアニメーション設定を追加 -->
+            <i data-lucide="chevron-right" class="ml-2 w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-300"></i>
           </a>
         </div>
       </section>
@@ -230,6 +232,15 @@
   <!-- 外部共通JSの読み込み -->
   <script src="../components/sidebar.js"></script>
   <script src="../components/footer.js"></script>
+
+  <!-- ★ Lucide Iconsをページ上で実体化させるためのスクリプトを追加 -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
 
 </body>
 </html>
