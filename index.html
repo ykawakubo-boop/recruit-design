@@ -86,7 +86,7 @@
           <!-- 右側：メイン画像 (TOP.png) -->
           <div class="flex justify-center md:justify-start relative mt-8 md:mt-0 md:-ml-8 lg:-ml-16">
             <div class="relative w-full max-w-lg z-10">
-               <img src="images/TOP.png" alt="メインビジュアル" class="w-full h-auto object-contain drop-shadow-2xl">
+               <img src="images/top.png" alt="メインビジュアル" class="w-full h-auto object-contain drop-shadow-2xl">
             </div>
             <!-- 画像の背景装飾 -->
             <div class="absolute bottom-10 -left-8 lg:-left-20 w-32 h-32 bg-white/20 backdrop-blur-md rounded-full shadow-lg z-0 animate-pulse hidden md:block"></div>
@@ -368,7 +368,7 @@
         
         <div class="max-w-6xl mx-auto relative">
           <div class="relative sm:absolute top-0 sm:-top-12 left-0 sm:left-[6%] md:left-[8%] w-16 sm:w-24 md:w-32 mx-auto sm:mx-0 pointer-events-none z-10 mb-4 sm:mb-0">
-            <img src="images/仲良し.png" alt="キャラクターイラスト" class="w-full h-auto object-contain drop-shadow-md">
+            <img src="images/nakayoshi.png" alt="キャラクターイラスト" class="w-full h-auto object-contain drop-shadow-md">
           </div>
 
           <div class="text-center mb-16">
@@ -551,9 +551,41 @@
   
   <script>
   window.addEventListener('DOMContentLoaded', () => {
+    // 1. Lucideアイコンの初期化
     if (typeof lucide !== 'undefined') {
       lucide.createIcons();
     }
+
+    // 2. ★追加：レフトナビ（サイドバー）のアクティブ自動ハイライトスクリプト
+    // 表示中のページのリンクを検出して、テーマカラーの「ブルー」で光らせます
+    setTimeout(() => {
+      const sidebar = document.querySelector('sidebar-component');
+      if (sidebar) {
+        // Shadow DOMまたは通常DOMどちらの構成でも確実にパースできるよう配慮
+        const sidebarRoot = sidebar.shadowRoot || sidebar;
+        
+        // このトップページを指すリンクを探してアクティブ表示を適用
+        const activeLink = sidebarRoot.querySelector('a[href*="design_index.html"]') || sidebarRoot.querySelector('a[data-id="design-home"]');
+        if (activeLink) {
+          // 他のアクティブ表示クラスをクレンジングした上で、WEBデザイナー用のアクティブカラー（ブルー）を適用して光らせます
+          activeLink.classList.remove('text-slate-800', 'text-slate-600', 'text-slate-500');
+          activeLink.classList.add('text-blue-600', 'font-bold', 'transition-colors');
+          
+          // 親階層（第2階層・第1階層）のメニューがある場合は自動的に展開状態を維持
+          const parentSubList = activeLink.closest('.nav-sub-list');
+          if (parentSubList) {
+            parentSubList.style.maxHeight = '800px';
+            parentSubList.style.opacity = '1';
+            parentSubList.style.padding = '10px 0 0 12px';
+            
+            const parentSubHeader = parentSubList.closest('.has-sub')?.querySelector('a');
+            if (parentSubHeader) {
+              parentSubHeader.classList.add('text-blue-600');
+            }
+          }
+        }
+      }
+    }, 150); // コンポーネントが内部レンダリングを終えるタイミングに確実に合わせてトリガー
   });
 </script>
 
