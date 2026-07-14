@@ -20,7 +20,7 @@ class SidebarComponent extends HTMLElement {
       <!-- モバイル用ヘッダー -->
       <header id="mobile-header" class="lg:hidden fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md z-40 border-b border-slate-200 px-5 py-3 flex justify-between items-center shadow-sm">
         <a href="${basePath}/index.html" class="flex flex-col items-center text-center">
-          <img src="${basePath}/images/透過.png" alt="Diamond head DESIGN" class="h-10 w-auto object-contain mb-0.5" onerror="this.src='https://placehold.co/160x40/e2e8f0/475569?text=LOGO'">
+          <img src="${basePath}/images/dh_logo.png" alt="Diamond head DESIGN" class="h-10 w-auto object-contain mb-0.5" onerror="this.src='https://placehold.co/160x40/e2e8f0/475569?text=LOGO'">
           <span class="block text-[8px] font-bold text-slate-700 tracking-[0.1em] leading-tight">
             DESIGN CAREERS
           </span>
@@ -35,7 +35,7 @@ class SidebarComponent extends HTMLElement {
         
         <!-- ロゴエリア -->
         <a href="${basePath}/index.html" class="block text-center mb-12">
-          <img src="${basePath}/images/透過.png" alt="Diamond head DESIGN" class="w-full max-w-[200px] h-auto mx-auto object-contain mb-4" onerror="this.src='https://placehold.co/200x50/e2e8f0/475569?text=LOGO'">
+          <img src="${basePath}/images/dh_logo.png" alt="Diamond head DESIGN" class="w-full max-w-[200px] h-auto mx-auto object-contain mb-4" onerror="this.src='https://placehold.co/200x50/e2e8f0/475569?text=LOGO'">
           <span class="block text-xs font-bold text-slate-700 tracking-[0.15em] leading-tight text-center">
             DESIGN CAREERS
           </span>
