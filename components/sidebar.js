@@ -89,7 +89,7 @@ class SidebarComponent extends HTMLElement {
                 </li>
                 <li>
                   <a href="https://recruit.jobcan.jp/diamondhead/list?category_id=13413" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-medium text-slate-600 hover:text-blue-600 transition group/link">
-                    <span>中途・業務委託求人</span>
+                    <span>中途・業務委託</span>
                     <i data-lucide="external-link" class="w-3 h-3 text-slate-400 group-hover/link:text-blue-600"></i>
                   </a>
                 </li>
