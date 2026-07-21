@@ -54,27 +54,7 @@ class SidebarComponent extends HTMLElement {
               </a>
             </li>
 
-            <!-- 2. インタビュー (アコーディオン) -->
-            <li class="group has-sub">
-              <a href="#" data-target="interviewContent" class="js-accordion-btn flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition">
-                インタビュー 
-                <i data-lucide="chevron-right" class="js-accordion-arrow w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-transform duration-300"></i>
-              </a>
-              <ul id="interviewContent" class="js-accordion-content hidden pl-4 mt-3 space-y-3 border-l-2 border-slate-100 ml-2">
-                <li>
-                  <a href="${basePath}/interview/interview_2019.html" data-nav="interview-2019" class="block text-sm font-medium text-slate-600 hover:text-blue-600 transition">
-                    2019年新卒入社
-                  </a>
-                </li>
-                <li>
-                  <a href="${basePath}/interview/interview_2018.html" data-nav="interview-2018" class="block text-sm font-medium text-slate-600 hover:text-blue-600 transition">
-                    2018年新卒入社
-                  </a>
-                </li>
-              </ul>
-            </li>
-            
-            <!-- 3. RECRUIT / 採用 (アコーディオン・新規集約) -->
+            <!-- 2. RECRUIT / 採用 (アコーディオン) -->
             <li class="group has-sub">
               <a href="#" data-target="recruitContent" class="js-accordion-btn flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition">
                 RECRUIT / 採用 
@@ -96,6 +76,26 @@ class SidebarComponent extends HTMLElement {
                 <li>
                   <a href="${basePath}/outsourcing.html" data-nav="outsourcing" class="block text-sm font-medium text-slate-600 hover:text-blue-600 transition">
                     業務委託契約について
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- 3. インタビュー (アコーディオン) -->
+            <li class="group has-sub">
+              <a href="#" data-target="interviewContent" class="js-accordion-btn flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition">
+                インタビュー 
+                <i data-lucide="chevron-right" class="js-accordion-arrow w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-transform duration-300"></i>
+              </a>
+              <ul id="interviewContent" class="js-accordion-content hidden pl-4 mt-3 space-y-3 border-l-2 border-slate-100 ml-2">
+                <li>
+                  <a href="${basePath}/interview/interview_2019.html" data-nav="interview-2019" class="block text-sm font-medium text-slate-600 hover:text-blue-600 transition">
+                    2019年新卒入社
+                  </a>
+                </li>
+                <li>
+                  <a href="${basePath}/interview/interview_2018.html" data-nav="interview-2018" class="block text-sm font-medium text-slate-600 hover:text-blue-600 transition">
+                    2018年新卒入社
                   </a>
                 </li>
               </ul>
@@ -163,7 +163,7 @@ class SidebarComponent extends HTMLElement {
       });
     }
 
-    // 2. ★汎用化されたアコーディオン制御
+    // 2. 汎用化されたアコーディオン制御
     const accordionBtns = this.querySelectorAll('.js-accordion-btn');
     accordionBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
