@@ -46,13 +46,13 @@
 
   <div class="flex min-h-screen w-full">
 
-    <!-- サイドバーコンポーネ出し -->
+    <!-- サイドバーコンポーネント呼び出し -->
     <sidebar-component base-path="."></sidebar-component>
 
     <!-- メインコンテンツ (レフトナビの右側に配置) -->
     <main class="flex-1 lg:ml-72 flex flex-col w-full pt-16 lg:pt-0 relative">
       
-      <!-- Hero Section（元のシンプルな配置に戻し、タイポグラフィを洗練化） -->
+      <!-- Hero Section -->
       <section class="relative py-20 lg:py-28 min-h-[85vh] flex items-center overflow-hidden" style="background-color: #C7FF00;">
         <!-- 左側背景（ブルー） - 斜めの幾学切り返し -->
         <div class="absolute inset-0 w-[100%] md:w-[65%] lg:w-[60%] h-full z-0 transition-all duration-500" 
@@ -62,25 +62,31 @@
         <div class="px-6 md:px-12 lg:px-16 xl:px-20 w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
           
           <!-- 左側：テキストエリア -->
-          <div class="space-y-8 text-center md:text-left">
-            <div class="inline-block bg-white text-blue-600 font-bold px-4 py-1.5 rounded-full text-sm tracking-widest shadow-sm">
-              デザイン職採用サイト
+          <div class="flex flex-col items-center md:items-start text-center md:text-left z-10 w-full">
+            <!-- ラベル部分もシャープなライン装飾で洗練度をアップ -->
+            <div class="inline-flex items-center gap-4 mb-10">
+              <span class="hidden md:block w-10 h-[2px] bg-slate-900"></span>
+              <span class="text-slate-900 font-bold text-xs sm:text-sm tracking-[0.2em]">WEBデザイナー採用サイト</span>
             </div>
-            <!-- 【調整箇所】
-                 - hero-title：フォント詰め処理CSSを適用。
-                 - font-bold (ウェイト 700)：極太(900)から太字(700)へ調整し、スマートな高級感を持たせました。
-                 - tracking-[0.18em]：文字と文字の間を贅沢に広げ、横にすっきりと広がるモダンな佇まいに変更
-                 - leading-[1.3]：文字間を広げな分、行間も最も調和するバランスに調整
-            -->
-            <h1 class="hero-title text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-[1.3] tracking-[0.18em] drop-shadow-sm">
-              モヤモヤを、<br />
-              ワクワクに。
+            
+            <!-- 洗練されたタイポグラフィ：太さを抑え、段差をつけてエディトリアルな美しさを表現 -->
+            <h1 class="hero-title text-slate-900 mb-12 w-full">
+              <span class="block text-4xl sm:text-5xl lg:text-[4rem] font-bold leading-tight tracking-[0.12em] mb-4">
+                モヤモヤを、
+              </span>
+              <!-- 左にインデント（余白）を設け、視線のリズムを作る -->
+              <span class="block text-4xl sm:text-5xl lg:text-[4rem] font-bold leading-tight tracking-[0.12em] md:pl-16">
+                ワクワクに。
+              </span>
             </h1>
-            <p class="text-slate-900 font-semibold text-lg sm:text-xl leading-relaxed mx-auto md:mx-0 max-w-md">
-              ビジネスのお悩みを、デザインで解決する。<br />
-              アイデアと表現力で、<br />
-              わたしたちと一緒に理想をカタチにしていきませんか？
-            </p>
+            
+            <!-- サブコピー：縦ラインのあしらいで全体のバランスを引き締める -->
+            <div class="md:pl-16 w-full">
+              <p class="text-slate-800 font-medium text-sm sm:text-base leading-[2] tracking-[0.08em] border-l-[3px] border-slate-900 pl-5 py-1 text-left mx-auto md:mx-0 max-w-fit">
+                アイデアと表現力で、<br />
+                わたしたちと一緒に理想をカタチにしていきませんか？
+              </p>
+            </div>
           </div>
 
           <!-- 右側：メイン画像 (TOP.png) -->
@@ -88,9 +94,6 @@
             <div class="relative w-full max-w-lg z-10">
                <img src="images/top.png" alt="メインビジュアル" class="w-full h-auto object-contain drop-shadow-2xl">
             </div>
-            <!-- 画像の背景装飾 -->
-            <div class="absolute bottom-10 -left-8 lg:-left-20 w-32 h-32 bg-white/20 backdrop-blur-md rounded-full shadow-lg z-0 animate-pulse hidden md:block"></div>
-            <div class="absolute top-10 right-10 w-16 h-16 bg-white/40 backdrop-blur-md rounded-full shadow-md z-0 animate-bounce hidden md:block"></div>
           </div>
 
         </div>
@@ -98,9 +101,8 @@
 
       <!-- Mission Section -->
       <section id="mission" class="py-24 px-6 md:px-12 lg:px-20 relative" style="background-color: #C7FF00;">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-12 items-stretch">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-stretch">
           <div class="md:w-1/3 text-center md:text-left flex flex-col justify-between">
-            <!-- Our Mission の見出しレイアウトの最適化 -->
             <div class="mb-10 text-center md:text-left">
               <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Our Mission</h2>
               <p class="font-bold text-lg text-slate-700 border-l-4 border-slate-900 pl-4 py-1 mx-auto md:mx-0 w-fit md:w-auto">デザイングループが目指していること</p>
@@ -111,15 +113,31 @@
               <img src="images/mission.png" alt="Missionのイメージ" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500">
             </div>
           </div>
+          
           <div class="md:w-2/3 bg-white text-slate-800 p-8 sm:p-12 rounded-2xl shadow-xl relative border border-slate-100 flex flex-col justify-center">
             <div class="absolute -top-6 -right-6 w-14 h-14 rounded-xl flex items-center justify-center shadow-lg transform rotate-6" style="background-color: #27A6FF;">
-              <i data-lucide="search" class="w-6 h-6 text-white"></i>
+              <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
             </div>
-            <h3 class="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-6 text-slate-900">「どうしたらいい？」に答えを。</h3>
-            <p class="text-base sm:text-lg leading-loose text-slate-600">
-              ビジネスの現場に溢れるモヤモヤ。私たちの役割は、その悩みに寄り添いデザインで答えを出すことです。<br />
-              オンラインストアのバナー制作やサイト更新といった日々の運用から、UI/UXデザイン、データ分析に基づく改善提案まで。<br class="hidden sm:block" />ただ「作る」だけで、その先の利用者を「楽しませる」ことを大切にしています。
+            
+            <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4 leading-tight">
+              ビジネスの現場に溢れる「どうしたらいい？」に、<br class="hidden md:block">デザインで答えを。
+            </h3>
+            <p class="text-base text-slate-600 leading-relaxed mb-8">
+              わたしたちの役割は、その悩みに寄り添い課題を解決することです。<br class="hidden md:block">
+              ただ「作る」だけでなく、その先の利用者を「楽しませる」プロフェッショナル集団を目指しています。
             </p>
+
+            <div class="space-y-6">
+              <div class="border-l-4 border-blue-500 pl-4">
+                <h4 class="font-bold text-slate-900 text-lg mb-1">日々の運用から、一歩踏み込んだ改善提案まで</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">オンラインストアのバナーや特集ページ制作、サイト更新、進行管理といった運用を主軸に、UI/UXデザインやデータ分析に基づく提案も行います。</p>
+              </div>
+              <div class="border-l-4 border-[#C7FF00] pl-4">
+                <h4 class="font-bold text-slate-900 text-lg mb-1">あらゆる課題を解決するクリエイティブ</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">運用で培ってきた提案力を武器に、WEBブランディング、印刷物、映像、ロゴ、キャラクター制作など、多岐にわたるソリューションを提供します。</p>
+              </div>
+            </div>
+            
           </div>
         </div>
       </section>
@@ -127,7 +145,7 @@
       <!-- Values Section -->
       <section id="values" class="py-24 px-6 md:px-12 lg:px-20 relative" style="background-color: #27A6FF;">
         <div class="max-w-6xl mx-auto">
-          <!-- Our Values の見出し構造・縦線デザインの完全統一 -->
+          <!-- Our Values -->
           <div class="mb-16 text-center md:text-left">
             <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">Our Values</h2>
             <p class="font-bold text-lg text-blue-100 border-l-4 border-white pl-4 py-1 mx-auto md:mx-0 w-fit md:w-auto">わたしたちの強み</p>
@@ -171,27 +189,21 @@
           
           <!-- 左側：テキストエリア -->
           <div class="lg:w-1/3 space-y-8 relative z-10 text-center lg:text-left">
-            <!-- Target Positions 見出し＆「目指すポジション」のレイアウト完全調和 -->
             <div class="mb-10 text-center lg:text-left">
               <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Target Positions</h2>
               <p class="font-bold text-lg text-slate-700 border-l-4 border-slate-900 pl-4 py-1 mx-auto lg:mx-0 w-fit lg:w-auto">目指すポジション</p>
             </div>
-            <!-- 【調整箇所】
-                 「ECデザイナー」とその前後のカッコ「 」を <span class="whitespace-nowrap"> で囲いました。
-                 これにより、スマートフォン表示時でも絶対に途中で単語が改行されず、1つの単語としてまとまった綺麗な表示がキープされます。
-            -->
             <p class="text-slate-900 leading-loose text-base md:text-lg font-medium">
-              まずは、WEBデザイン, ECビジネス、システム、それぞれの側面から知識を身に着けた<span class="whitespace-nowrap">「<strong class="text-slate-900 text-xl font-extrabold border-b-2 border-slate-900 pb-0.5">ECデザイナー</strong>」</span>を目指します。<br /><br />
+              まずは、WEBデザイン、ECビジネス、システム、それぞれの側面から知識を身に着けた<span class="whitespace-nowrap">「<strong class="text-slate-900 text-xl font-extrabold border-b-2 border-slate-900 pb-0.5">ECデザイナー</strong>」</span>を目指します。<br /><br />
               デザインだけに留まらず、あらゆる知識を蓄えることで、将来的にキャリアパスをディレクターやUI/UXデザイナーなど多方面へ広げられます。
             </p>
           </div>
 
           <!-- 右側：ベン図エリア -->
           <div class="lg:w-2/3 w-full flex justify-center mt-10 lg:mt-0">
-            <!-- 図のコンテナ (アスペクト比1:1を維持して文字崩れを防ぐ) -->
             <div class="relative w-full max-w-[500px] aspect-square text-[10px] sm:text-xs md:text-sm font-bold text-slate-900 select-none">
               
-              <!-- 背景の透かし文字 (Z-indexを上げて円の上に表示) -->
+              <!-- 背景の透かし文字 -->
               <div class="absolute top-[2%] left-1/2 -translate-x-1/2 text-3xl sm:text-4xl md:text-5xl text-white font-extrabold tracking-wider z-20 opacity-100 drop-shadow-md">Business</div>
               <div class="absolute bottom-[2%] left-[5%] text-3xl sm:text-4xl md:text-5xl text-white font-extrabold tracking-wider z-20 opacity-100 drop-shadow-md">Design</div>
               <div class="absolute bottom-[2%] right-[5%] text-3xl sm:text-4xl md:text-5xl text-white font-extrabold tracking-wider z-20 opacity-100 drop-shadow-md">System</div>
@@ -209,14 +221,13 @@
                   <!-- System Circle (水色) -->
                   <div class="absolute bottom-0 right-0 w-[65%] h-[65%] rounded-full mix-blend-multiply opacity-90" style="background-color: #52cffd;"></div>
                   
-                  <!-- 中央の点の配置 (位置を微調整) -->
+                  <!-- 中央の点の配置 -->
                   <div class="absolute top-[53%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 flex items-center justify-center pointer-events-none">
                     <div class="w-3 h-3 bg-slate-900 rounded-full"></div>
                   </div>
 
                   <!-- テキストと点 -->
                   <div class="absolute inset-0 z-30 pointer-events-none tracking-tight">
-                    <!-- Business内 -->
                     <div class="absolute top-[18%] left-[28%] text-center transform -translate-x-1/2">
                       <div class="w-1.5 h-1.5 bg-slate-900 rounded-full mx-auto mb-1"></div>
                       アカウント<br/>マネージャー
@@ -230,7 +241,6 @@
                       プランナー
                     </div>
 
-                    <!-- Design内 -->
                     <div class="absolute bottom-[35%] left-[8%] text-center">
                       <div class="w-1.5 h-1.5 bg-slate-900 rounded-full mx-auto mb-1"></div>
                       グラフィック<br/>デザイナー
@@ -240,25 +250,21 @@
                       WEBデザイナー
                     </div>
 
-                    <!-- System内 -->
                     <div class="absolute bottom-[25%] right-[12%] text-center">
                       <div class="w-1.5 h-1.5 bg-slate-900 rounded-full mx-auto mb-1"></div>
                       フロントエンド<br/>エンジニア
                     </div>
 
-                    <!-- 交差部分 (ディレクター) -->
                     <div class="absolute top-[48%] left-[22%] text-center">
                       <div class="w-1.5 h-1.5 bg-slate-900 rounded-full mx-auto mb-1"></div>
                       ディレクター
                     </div>
 
-                    <!-- 交差部分 (WEBディレクター) -->
                     <div class="absolute top-[44%] right-[18%] text-center">
                       <div class="w-1.5 h-1.5 bg-slate-900 rounded-full mx-auto mb-1"></div>
                       WEBディレクター
                     </div>
 
-                    <!-- 交差部分 (コーダー / UI/UX) -->
                     <div class="absolute bottom-[28%] left-[58%] -translate-x-1/2 text-center">
                       <div class="w-1.5 h-1.5 bg-slate-900 rounded-full mx-auto mb-1"></div>
                       コーダー
@@ -267,7 +273,6 @@
                       <div class="w-1.5 h-1.5 bg-slate-900 rounded-full mx-auto mb-1"></div>
                       UI/UXデザイナー
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -323,7 +328,7 @@
                     <ul class="text-sm text-slate-600 space-y-2">
                       <li>· 検定取得補助制度 / キャリア相談・面談</li>
                       <li>· 得意分野を活かしたポジショニング</li>
-                      <li><span class="text-xs text-slate-500 mt-2 pl-2">└ チームリーダー / 品質管理リーダー / 指難リーダー / Webディレクター / UI/UXデザイナー</span></li>
+                      <li><span class="text-xs text-slate-500 mt-2 pl-2">└ チームリーダー / 品質管理リーダー / Webディレクター / UI/UXデザイナー</span></li>
                     </ul>
                   </div>
                 </div>
@@ -352,7 +357,7 @@
                   </div>
                   <div class="bg-blue-100 aspect-[4/3] rounded-xl flex items-center justify-center p-6 text-center">
                     <p class="text-blue-800 font-bold text-sm leading-relaxed">
-                      コミュニケーションを大切にし、風通しの良い環境です。
+                      コミュニケーションを大切にした、<br />風通しの良い環境です。
                     </p>
                   </div>
                 </div>
@@ -363,9 +368,92 @@
         </div>
       </section>
 
+      <!-- Welfare Section (福利厚生・制度) -->
+      <section id="welfare" class="py-24 px-6 md:px-12 lg:px-20 bg-white border-t border-slate-200 relative">
+        <div class="max-w-6xl mx-auto">
+          <!-- 見出し -->
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Welfare & Benefits</h2>
+            <p class="font-bold text-lg text-blue-600 mb-6">福利厚生・制度</p>
+            <p class="text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              ワークライフバランスの取りやすい制度や教育制度など<br class="hidden sm:block">
+              スタッフの働きやすさを考えた充実の制度が数多く整っています。<br>
+              <span class="inline-block mt-3 px-3 py-1 bg-blue-50 text-blue-700 font-bold text-sm rounded-md">※ 以下は福利厚生・制度の一部です。</span>
+            </p>
+          </div>
+
+          <!-- 制度アイコン一覧（8項目グリッド） -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div class="w-14 h-14 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="gift" class="w-7 h-7"></i>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">誕生日祝い金制度</h4>
+            </div>
+            
+            <!-- 慶弔見舞金（金封のオリジナルSVGアイコン） -->
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div class="w-14 h-14 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7">
+                  <rect x="5" y="2" width="14" height="20" rx="1" />
+                  <path d="M5 13h14" />
+                  <path d="M10 11l4 4" />
+                  <path d="M14 11l-4 4" />
+                  <circle cx="12" cy="13" r="1" fill="currentColor"/>
+                  <line x1="12" y1="5" x2="12" y2="10" />
+                </svg>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">慶弔見舞金</h4>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div class="w-14 h-14 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="book-open" class="w-7 h-7"></i>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">資格取得補助制度</h4>
+            </div>
+
+            <!-- UIターン補助（シンプルな飛行機アイコンに変更） -->
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div class="w-14 h-14 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="plane" class="w-7 h-7"></i>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">UIターン補助</h4>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div class="w-14 h-14 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="clipboard-list" class="w-7 h-7"></i>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">人事評価制度</h4>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div class="w-14 h-14 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="users" class="w-7 h-7"></i>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">入社前交流会・研修</h4>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div class="w-14 h-14 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="trophy" class="w-7 h-7"></i>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">デザインアワード</h4>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <div class="w-14 h-14 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="shirt" class="w-7 h-7"></i>
+              </div>
+              <h4 class="font-bold text-slate-800 text-sm">服装髪型自由</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- We are looking for... -->
-      <section class="py-24 px-6 bg-white border-t border-slate-200 relative">
-        
+      <section class="py-24 px-6 bg-slate-50 border-t border-slate-200 relative">
         <div class="max-w-6xl mx-auto relative">
           <div class="relative sm:absolute top-0 sm:-top-12 left-0 sm:left-[6%] md:left-[8%] w-16 sm:w-24 md:w-32 mx-auto sm:mx-0 pointer-events-none z-10 mb-4 sm:mb-0">
             <img src="images/nakayoshi.png" alt="キャラクターイラスト" class="w-full h-auto object-contain drop-shadow-md">
@@ -377,7 +465,7 @@
           </div>
 
           <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="p-6 xl:p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+            <div class="p-6 xl:p-8 rounded-2xl bg-white border border-slate-200 hover:border-blue-200 hover:bg-blue-50 transition-colors">
               <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-6">
                 <i data-lucide="coffee" class="w-6 h-6"></i>
               </div>
@@ -386,7 +474,7 @@
                 コミュニケーションを大切にし、何でも楽しんで取り組むチャレンジ精神のある方。前向きで成長意欲が高い方。
               </p>
             </div>
-            <div class="p-6 xl:p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+            <div class="p-6 xl:p-8 rounded-2xl bg-white border border-slate-200 hover:border-blue-200 hover:bg-blue-50 transition-colors">
               <div class="w-12 h-12 rounded-full bg-lime-100 flex items-center justify-center text-lime-700 mb-6">
                 <i data-lucide="user-check" class="w-6 h-6"></i>
               </div>
@@ -395,7 +483,7 @@
                 売上に繋げるための設計を自ら考え、提案できるデザイナーになれるよう、主体性をもって業務に取り組める方。
               </p>
             </div>
-            <div class="p-6 xl:p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+            <div class="p-6 xl:p-8 rounded-2xl bg-white border border-slate-200 hover:border-blue-200 hover:bg-blue-50 transition-colors">
               <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-6">
                 <i data-lucide="search" class="w-6 h-6"></i>
               </div>
@@ -404,7 +492,7 @@
                 クライアントのブランド価値向上の一助となれるように、幅広い視野でトレンドを取り入れられる方。
               </p>
             </div>
-            <div class="p-6 xl:p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+            <div class="p-6 xl:p-8 rounded-2xl bg-white border border-slate-200 hover:border-blue-200 hover:bg-blue-50 transition-colors">
               <div class="w-12 h-12 rounded-full bg-lime-100 flex items-center justify-center text-lime-700 mb-6">
                 <i data-lucide="check-circle" class="w-6 h-6"></i>
               </div>
@@ -414,7 +502,6 @@
               </p>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -461,84 +548,6 @@
         </div>
       </section>
 
-      <!-- CTA / Join Us (洗練された中央揃えのモダンデザイン) -->
-      <section id="join" class="py-24 px-6 md:px-12 lg:px-20 relative overflow-hidden bg-slate-50 border-t border-slate-200">
-        <!-- 爽やかで品位のあるデザイナーズ・カラーグラデーション装飾 -->
-        <div class="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-[#C7FF00]/20 filter blur-xl pointer-events-none z-0"></div>
-        <div class="absolute -bottom-24 -right-12 w-72 h-72 rounded-full bg-[#27A6FF]/15 filter blur-xl pointer-events-none z-0"></div>
-        
-        <div class="max-w-5xl mx-auto relative z-10">
-          <!-- ★ 中央揃えに統一された美しい見出しヘッダー -->
-          <div class="text-center mb-16 space-y-4">
-            <!-- 英語タグを見出しデザインに合わせた上品なバッジに変更 -->
-            <span class="inline-block bg-blue-600 text-white font-bold px-4 py-1.5 rounded-full text-xs tracking-wider uppercase shadow-sm">
-              JOIN US
-            </span>
-            <!-- 【調整箇所：不要な<br />を完全消去し、ご指示通りの『改行は1回のみ』の完璧な文字リズムに変更】 -->
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-[1.3] tracking-tight hero-title pt-4">
-              モヤモヤをワクワクに変える<br />
-              仲間を募集しています！
-            </h2>
-          </div>
-          
-          <!-- ★ グリッドの横幅を max-w-4xl に制限することで、中央揃えのタイトルと完璧な1本のセンター軸で整列し、不自然な間延び感を完全解消します -->
-          <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <!-- 新卒採用カード（極細ボーダーと滑らかな落とし影の洗練モダンカード） -->
-            <div class="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex flex-col h-full relative group overflow-hidden">
-              <!-- アクセントカラーのライン（サイト全体と共通の美しい水色） -->
-              <div class="absolute top-0 left-0 w-full h-1.5 bg-[#27A6FF]"></div>
-              
-              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 pb-3 border-b border-slate-100 inline-block w-full flex items-center justify-between">
-                新卒採用
-              </h3>
-              <!-- 勤務地表示：新卒は札幌のみ -->
-              <p class="text-slate-600 text-sm md:text-base font-bold mb-10 flex items-center gap-2">
-                <i data-lucide="map-pin" class="w-4 h-4 text-blue-500"></i> 【札幌本社】
-              </p>
-              
-              <div class="mt-auto space-y-4">
-                <!-- 洗練されたソリッドブルーのボタン -->
-                <a href="https://recruit.jobcan.jp/diamondhead/job_offers/2197383" target="_blank" rel="noopener noreferrer" class="w-full bg-[#27A6FF] text-white px-6 py-4 rounded-xl font-bold hover:bg-blue-600 transition-all duration-200 flex justify-between items-center group text-base shadow-md">
-                  <span>募集要項・エントリー</span>
-                  <i data-lucide="chevron-right" class="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-200"></i>
-                </a>
-                <!-- 会社説明会ボタン -->
-                <a href="https://recruit.jobcan.jp/diamondhead/job_offers/1462258" target="_blank" rel="noopener noreferrer" class="w-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 px-6 py-3.5 rounded-xl font-bold transition-all duration-200 flex justify-between items-center group text-sm">
-                  <span>会社説明会</span>
-                  <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1.5 transition-transform duration-200"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- 中途採用・業務委託カード（極細ボーダーと滑らかな落とし影の洗練モダンカード） -->
-            <div class="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 flex flex-col h-full relative group overflow-hidden">
-              <!-- アクセントカラーのライン（サイト全体と共通のライムグリーン） -->
-              <div class="absolute top-0 left-0 w-full h-1.5 bg-[#C7FF00]"></div>
-              
-              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2 pb-3 border-b border-slate-100 inline-block w-full flex items-center justify-between">
-                中途・業務委託
-              </h3>
-              <!-- 勤務地表示：【札幌本社・東京本社・リモート】 -->
-              <p class="text-slate-600 text-sm md:text-base font-bold mb-10 flex items-center gap-2">
-                <i data-lucide="map-pin" class="w-4 h-4 text-[#00bfa5]"></i> 【札幌本社・東京本社・リモート】
-              </p>
-              
-              <div class="mt-auto space-y-4">
-                <!-- シックなダークグレーのソリッドボタン -->
-                <a href="https://recruit.jobcan.jp/diamondhead/list?category_id=13413" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-900 text-white px-6 py-4 rounded-xl font-bold hover:bg-slate-800 transition-all duration-200 flex justify-between items-center group text-base shadow-md">
-                  <span>募集要項・エントリー</span>
-                  <i data-lucide="chevron-right" class="w-5 h-5 transform group-hover:translate-x-1.5 transition-transform duration-200"></i>
-                </a>
-                <a href="outsourcing.html" class="w-full bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 px-6 py-3.5 rounded-xl font-bold transition-all duration-200 flex justify-between items-center group text-sm">
-                  <span>業務委託契約の情報</span>
-                  <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1.5 transition-transform duration-200"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- フッターコンポーネントの呼び出し -->
       <footer-component base-path="."></footer-component>
 
@@ -556,7 +565,7 @@
       lucide.createIcons();
     }
 
-    // 2. ★追加：レフトナビ（サイドバー）のアクティブ自動ハイライトスクリプト
+    // 2. レフトナビ（サイドバー）のアクティブ自動ハイライトスクリプト
     // 表示中のページのリンクを検出して、テーマカラーの「ブルー」で光らせます
     setTimeout(() => {
       const sidebar = document.querySelector('sidebar-component');
@@ -588,7 +597,6 @@
     }, 150); // コンポーネントが内部レンダリングを終えるタイミングに確実に合わせてトリガー
   });
 </script>
-
 
 </body>
 </html>
