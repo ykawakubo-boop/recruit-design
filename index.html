@@ -559,44 +559,44 @@
   <script src="components/footer.js"></script>
   
   <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    // 1. Lucideアイコンの初期化
-    if (typeof lucide !== 'undefined') {
-      lucide.createIcons();
-    }
+    window.addEventListener('DOMContentLoaded', () => {
+      // 1. Lucideアイコンの初期化
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
 
-    // 2. レフトナビ（サイドバー）のアクティブ自動ハイライトスクリプト
-    // 表示中のページのリンクを検出して、テーマカラーの「ブルー」で光らせます
-    setTimeout(() => {
-      const sidebar = document.querySelector('sidebar-component');
-      if (sidebar) {
-        // Shadow DOMまたは通常DOMどちらの構成でも確実にパースできるよう配慮
-        const sidebarRoot = sidebar.shadowRoot || sidebar;
-        
-        // このトップページを指すリンクを探してアクティブ表示を適用
-        const activeLink = sidebarRoot.querySelector('a[href*="design_index.html"]') || sidebarRoot.querySelector('a[data-id="design-home"]');
-        if (activeLink) {
-          // 他のアクティブ表示クラスをクレンジングした上で、WEBデザイナー用のアクティブカラー（ブルー）を適用して光らせます
-          activeLink.classList.remove('text-slate-800', 'text-slate-600', 'text-slate-500');
-          activeLink.classList.add('text-blue-600', 'font-bold', 'transition-colors');
+      // 2. レフトナビ（サイドバー）のアクティブ自動ハイライトスクリプト
+      // 表示中のページのリンクを検出して、テーマカラーの「ブルー」で光らせます
+      setTimeout(() => {
+        const sidebar = document.querySelector('sidebar-component');
+        if (sidebar) {
+          // Shadow DOMまたは通常DOMどちらの構成でも確実にパースできるよう配慮
+          const sidebarRoot = sidebar.shadowRoot || sidebar;
           
-          // 親階層（第2階層・第1階層）のメニューがある場合は自動的に展開状態を維持
-          const parentSubList = activeLink.closest('.nav-sub-list');
-          if (parentSubList) {
-            parentSubList.style.maxHeight = '800px';
-            parentSubList.style.opacity = '1';
-            parentSubList.style.padding = '10px 0 0 12px';
+          // このトップページを指すリンクを探してアクティブ表示を適用
+          const activeLink = sidebarRoot.querySelector('a[href*="design_index.html"]') || sidebarRoot.querySelector('a[data-id="design-home"]');
+          if (activeLink) {
+            // 他のアクティブ表示クラスをクレンジングした上で、WEBデザイナー用のアクティブカラー（ブルー）を適用して光らせます
+            activeLink.classList.remove('text-slate-800', 'text-slate-600', 'text-slate-500');
+            activeLink.classList.add('text-blue-600', 'font-bold', 'transition-colors');
             
-            const parentSubHeader = parentSubList.closest('.has-sub')?.querySelector('a');
-            if (parentSubHeader) {
-              parentSubHeader.classList.add('text-blue-600');
+            // 親階層（第2階層・第1階層）のメニューがある場合は自動的に展開状態を維持
+            const parentSubList = activeLink.closest('.nav-sub-list');
+            if (parentSubList) {
+              parentSubList.style.maxHeight = '800px';
+              parentSubList.style.opacity = '1';
+              parentSubList.style.padding = '10px 0 0 12px';
+              
+              const parentSubHeader = parentSubList.closest('.has-sub')?.querySelector('a');
+              if (parentSubHeader) {
+                parentSubHeader.classList.add('text-blue-600');
+              }
             }
           }
         }
-      }
-    }, 150); // コンポーネントが内部レンダリングを終えるタイミングに確実に合わせてトリガー
-  });
-</script>
+      }, 150); // コンポーネントが内部レンダリングを終えるタイミングに確実に合わせてトリガー
+    });
+  </script>
 
 </body>
 </html>
