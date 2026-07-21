@@ -63,13 +63,13 @@ class SidebarComponent extends HTMLElement {
               <ul id="recruitContent" class="js-accordion-content hidden pl-4 mt-3 space-y-3 border-l-2 border-slate-100 ml-2">
                 <li>
                   <a href="https://recruit.jobcan.jp/diamondhead/job_offers/2197383" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-medium text-slate-600 hover:text-blue-600 transition group/link">
-                    <span>新卒採用</span>
+                    <span>新卒選考</span>
                     <i data-lucide="external-link" class="w-3 h-3 text-slate-400 group-hover/link:text-blue-600"></i>
                   </a>
                 </li>
                 <li>
                   <a href="https://recruit.jobcan.jp/diamondhead/list?category_id=13413" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-medium text-slate-600 hover:text-blue-600 transition group/link">
-                    <span>中途・業務委託</span>
+                    <span>中途・業務委託選考</span>
                     <i data-lucide="external-link" class="w-3 h-3 text-slate-400 group-hover/link:text-blue-600"></i>
                   </a>
                 </li>
