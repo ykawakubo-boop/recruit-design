@@ -1,10 +1,9 @@
 /**
  * DESIGN CAREERS 共通サイドバー（レフトナビ）コンポーネント
  * [機能]
- * - 現在の表示URL（window.location）を自動的に解析し、アクティブなリンクをハイライト（発光）します。
- * - 外部URL（会社説明会、制作事例など）も含めた、ご提示いただいた最新のメニューリストを完全踏襲しています。
- * - インタビュー詳細ページ（2019, 2018）にいる場合は、アコーディオンメニューを自動で美しく展開します。
- * - NBSP等の特殊文字を完全に排除したクリーンなデプロイ対応コードです。
+ * - HTML側でのメニュー編集を不要とし、本JSファイルのみで全ページのナビゲーションを一元管理します。
+ * - 現在の表示URL（window.location）を自動的に解析し、アクティブなリンクをハイライトします。
+ * - 複数アコーディオン（サブメニュー）に完全対応し、該当ページ滞在時は自動展開します。
  */
 class SidebarComponent extends HTMLElement {
   constructor() {
@@ -15,7 +14,10 @@ class SidebarComponent extends HTMLElement {
     // 属性からルートディレクトリへのベースパスを取得 (デフォルトは同階層 ".")
     const basePath = this.getAttribute('base-path') || '.';
 
-    // ご提示いただいた最新のHTML構造を踏襲したサイドバーHTMLを生成
+    // ==========================================
+    // 🎨 メニュー構造定義エリア
+    // 今後メニューを追加・変更する場合は、ここを編集するだけで全ページに反映されます。
+    // ==========================================
     this.innerHTML = `
       <!-- モバイル用ヘッダー -->
       <header id="mobile-header" class="lg:hidden fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md z-40 border-b border-slate-200 px-5 py-3 flex justify-between items-center shadow-sm">
@@ -44,21 +46,21 @@ class SidebarComponent extends HTMLElement {
         <!-- メニューリンク -->
         <nav class="flex-grow">
           <ul class="space-y-6">
+            <!-- 1. HOME -->
             <li>
               <a href="${basePath}/index.html" data-nav="home" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">
                 HOME 
                 <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i>
               </a>
             </li>
+
+            <!-- 2. インタビュー (アコーディオン) -->
             <li class="group has-sub">
-              <!-- JSで制御を紐づけるため、href="#"としIDを追加 -->
-              <a href="#" id="accordionBtn" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition">
+              <a href="#" data-target="interviewContent" class="js-accordion-btn flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition">
                 インタビュー 
-                <!-- インタラクティブに回転させるためIDを付加 -->
-                <i data-lucide="chevron-right" id="accordionArrow" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-transform duration-300"></i>
+                <i data-lucide="chevron-right" class="js-accordion-arrow w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-transform duration-300"></i>
               </a>
-              <!-- JSで非表示/表示のクラスをスムーズに制御できるように構造を整理 -->
-              <ul id="accordionContent" class="hidden pl-4 mt-3 space-y-3 border-l-2 border-slate-100 ml-2">
+              <ul id="interviewContent" class="js-accordion-content hidden pl-4 mt-3 space-y-3 border-l-2 border-slate-100 ml-2">
                 <li>
                   <a href="${basePath}/interview/interview_2019.html" data-nav="interview-2019" class="block text-sm font-medium text-slate-600 hover:text-blue-600 transition">
                     2019年新卒入社
@@ -72,13 +74,34 @@ class SidebarComponent extends HTMLElement {
               </ul>
             </li>
             
-            <li>
-              <a href="${basePath}/outsourcing.html" data-nav="outsourcing" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">
-                業務委託契約 
-                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition"></i>
+            <!-- 3. RECRUIT / 採用 (アコーディオン・新規集約) -->
+            <li class="group has-sub">
+              <a href="#" data-target="recruitContent" class="js-accordion-btn flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition">
+                RECRUIT / 採用 
+                <i data-lucide="chevron-right" class="js-accordion-arrow w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-transform duration-300"></i>
               </a>
+              <ul id="recruitContent" class="js-accordion-content hidden pl-4 mt-3 space-y-3 border-l-2 border-slate-100 ml-2">
+                <li>
+                  <a href="https://recruit.jobcan.jp/diamondhead/job_offers/2197383" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-medium text-slate-600 hover:text-blue-600 transition group/link">
+                    <span>新卒採用</span>
+                    <i data-lucide="external-link" class="w-3 h-3 text-slate-400 group-hover/link:text-blue-600"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://recruit.jobcan.jp/diamondhead/list?category_id=13413" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-medium text-slate-600 hover:text-blue-600 transition group/link">
+                    <span>中途・業務委託求人</span>
+                    <i data-lucide="external-link" class="w-3 h-3 text-slate-400 group-hover/link:text-blue-600"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="${basePath}/outsourcing.html" data-nav="outsourcing" class="block text-sm font-medium text-slate-600 hover:text-blue-600 transition">
+                    業務委託契約について
+                  </a>
+                </li>
+              </ul>
             </li>
 
+            <!-- 4. 会社説明会 -->
             <li>
               <a href="https://recruit.jobcan.jp/diamondhead/job_offers/1462258" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">
                 会社説明会 
@@ -86,6 +109,7 @@ class SidebarComponent extends HTMLElement {
               </a>
             </li>
             
+            <!-- 5. 制作事例 -->
             <li>
               <a href="https://design.diamondhead.jp/works/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between text-sm font-bold text-slate-800 hover:text-blue-600 transition group">
                 制作事例 
@@ -124,8 +148,8 @@ class SidebarComponent extends HTMLElement {
       const navLinks = leftNav.querySelectorAll('a');
       navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-          // アコーディオンのトリガーリンク以外の通常リンクの場合のみ、ドロワーを閉じる
-          if (link.getAttribute('href') === '#') {
+          // アコーディオンのトリガーボタン（サブメニューを開く親要素）はドロワーを閉じない
+          if (link.classList.contains('js-accordion-btn')) {
             e.preventDefault();
             return;
           }
@@ -139,24 +163,27 @@ class SidebarComponent extends HTMLElement {
       });
     }
 
-    // 2. デザイナーインタビューのアコーディオン手動クリック展開・格納
-    const accordionBtn = this.querySelector('#accordionBtn');
-    const accordionContent = this.querySelector('#accordionContent');
-    const accordionArrow = this.querySelector('#accordionArrow');
-
-    if (accordionBtn && accordionContent) {
-      accordionBtn.addEventListener('click', (e) => {
+    // 2. ★汎用化されたアコーディオン制御
+    const accordionBtns = this.querySelectorAll('.js-accordion-btn');
+    accordionBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
         e.preventDefault();
-        const isHidden = accordionContent.classList.contains('hidden');
-        if (isHidden) {
-          this.expandAccordion(accordionContent, accordionArrow);
-        } else {
-          this.collapseAccordion(accordionContent, accordionArrow);
+        const targetId = btn.getAttribute('data-target');
+        const content = this.querySelector(`#${targetId}`);
+        const arrow = btn.querySelector('.js-accordion-arrow');
+
+        if (content) {
+          const isHidden = content.classList.contains('hidden');
+          if (isHidden) {
+            this.expandAccordion(content, arrow);
+          } else {
+            this.collapseAccordion(content, arrow);
+          }
         }
       });
-    }
+    });
 
-    // 3. ★自動アクティブページハイライト（発光）＆展開処理
+    // 3. 自動アクティブページハイライト（発光）＆展開処理
     const currentUrl = window.location.href;
     let activeKey = '';
 
@@ -167,7 +194,6 @@ class SidebarComponent extends HTMLElement {
     } else if (currentUrl.includes('outsourcing.html')) {
       activeKey = 'outsourcing';
     } else if (currentUrl.includes('index.html')) {
-      // スクロールハッシュはトップページ側で吸収するため、URL単位でマッチさせます
       activeKey = 'home';
     } else {
       // 開発中の相対パスや、ドメイン直下の場合のフォールバック
@@ -177,22 +203,29 @@ class SidebarComponent extends HTMLElement {
       }
     }
 
-    // 一致したメニュー要素をハイライト色に変化
+    // 一致したメニュー要素をハイライト色に変化させ、親アコーディオンを開く
     if (activeKey) {
       const activeLink = this.querySelector(`a[data-nav="${activeKey}"]`);
       if (activeLink) {
-        // インタビュー詳細ページのアクティブ表示
-        if (activeKey.startsWith('interview-')) {
+        
+        // 親階層がサブメニュー（アコーディオン）の中にあるかチェック
+        const parentContent = activeLink.closest('.js-accordion-content');
+        
+        if (parentContent) {
+          // サブメニュー内の現在地リンクの文字色をハイライト
           activeLink.classList.remove('text-slate-600');
           activeLink.classList.add('text-blue-600', 'font-bold');
           
-          // 親階層アコーディオンを自動展開状態にして現在地を可視化
-          this.expandAccordion(accordionContent, accordionArrow);
-          if (accordionBtn) {
-            accordionBtn.classList.add('text-blue-600');
+          // 親アコーディオンを自動展開状態にして、親メニュー名もハイライト
+          const parentBtn = parentContent.previousElementSibling;
+          const arrow = parentBtn ? parentBtn.querySelector('.js-accordion-arrow') : null;
+          
+          this.expandAccordion(parentContent, arrow);
+          if (parentBtn) {
+            parentBtn.classList.add('text-blue-600');
           }
         } else {
-          // 通常メニュー（HOME / 業務委託契約）のアクティブ表示
+          // 通常メニュー（HOME 等）のアクティブ表示
           activeLink.classList.remove('text-slate-800');
           activeLink.classList.add('text-blue-600', 'font-black');
           
@@ -216,7 +249,6 @@ class SidebarComponent extends HTMLElement {
   expandAccordion(content, arrow) {
     if (!content) return;
     content.classList.remove('hidden');
-    // 親liの「group-hover」によるホバー展開とぶつからないようスタイルを固定
     content.style.display = 'block';
     if (arrow) {
       arrow.style.transform = 'rotate(90deg)';
